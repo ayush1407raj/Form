@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body{
+            background-image: linear-gradient(rgb(255, 255, 255), rgba(177, 177, 177, 0.756));
+            height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: grid;
+            place-items: center;
+        }
+        /* .container {
+            display: flex;
+            justify-content: center;
+        } */
+
+        h1{
+            color: rgb(24, 135, 175);
+            margin-bottom: 3rem;
+            font-size: 40px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 24rem;
+            gap: 2rem;
+        }
+
+        input,select,textarea {
+            padding: 1.2rem;
+            background: transparent;
+            border: 1px solid black;
+            border-radius: 4px;
+            box-shadow: 20px 20px 60px #89898980,
+                        -20px -20px 60px #ffffff;
+                        border: none;
+        }
+
+        textarea{
+            height: 6rem;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            border: 0.5px solid black;
+        }
+
+        button{
+            width: 8rem;
+            padding: 1rem;
+            cursor: pointer;
+            background: rgb(24, 135, 175);
+            color: aliceblue;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover{
+            box-shadow: 0px 0px 10px rgba(42, 44, 45, 0.76);
+            background: rgba(47, 110, 146, 0.849);
+        }
+        .errorMessage{
+        	color:red;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>FORM</h1>
+        <span class='errorMessage'></span>
+        <form onsubmit="return validate()">
+            <input id="name" type="text" name="NAME" placeholder="NAME" >
+            <input id="email" type="email" name="EMAIL" placeholder="EMAIL ID">
+            <textarea id="message" name="Message" placeholder="Message"></textarea>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script>
+        function validate(){
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            let errorMessage = ''
+            let pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+
+            if(name.length == 0)
+            {
+                document.getElementsByClassName('errorMessage')[0].innerHTML='Please Enter Name'
+                return false;
+            }
+
+            if(email.length == 0 || !pattern.test(email))
+            {
+                document.getElementsByClassName('errorMessage')[0].innerHTML='Please Enter Valid Email'
+                return false;
+            }
+            if(message.length == 0)
+            {
+                document.getElementsByClassName('errorMessage')[0].innerHTML='Please Enter Message'
+                return false;
+            }
+            
+
+        }
+    </script>
+</body>
+</html>
